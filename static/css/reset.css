@@ -1,0 +1,558 @@
+@charset "utf-8";
+body,html{
+    height: 100%;
+    font-size: 100px;
+    background-color: #fff;
+    font-family: Arial, "Microsoft Yahei", "微软雅黑", "宋体";
+    color: #505050;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+ul,
+li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+img{ display: block; border:none;}
+h1,
+h2,
+h3,
+h4,
+h5,
+th,
+td {
+    margin: 0;
+    padding: 0;
+}
+
+a:hover,
+a:visited,
+a:link {
+    text-decoration: none;
+}
+
+input,
+button,
+select {
+    outline: none;
+}
+button:focus,
+select:focus {
+    border: 1px solid #6eb5f2!important;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+}
+
+
+/*------------------------------ 媒体监测 ------------------------------*/
+
+@media (min-width: 1024px){/*>=1024的设备*/
+	html {
+        font-size: 48px!important;
+    }
+} 
+
+@media (min-width: 1280px) {
+	html {
+        font-size: 58px!important;
+    }
+} 
+@media (min-width: 1360px) {
+	html {
+        font-size: 64px!important;
+    }
+}
+@media (min-width: 1366px) {
+	html {
+        font-size: 70px!important;
+    }
+}  
+
+@media (min-width: 1440px) {
+	html {
+        font-size: 80px!important;
+    }
+} 
+
+@media (min-width: 1680px) {
+	html {
+        font-size: 90px!important;
+    }
+} 
+@media (min-width: 1920px) {
+	html {
+        font-size: 100px!important;
+    }
+} 
+
+
+/*------------------------------ 通用样式 ------------------------------*/
+
+
+/* 字体样式 */
+
+.font18 {
+    font-size: 0.18rem!important;
+}
+
+.font16 {
+    font-size: 0.16rem!important;
+}
+
+.font14 {
+    font-size: 0.14rem!important;
+}
+
+.font12 {
+    font-size: 0.12rem!important;
+}
+
+.bold {
+    font-weight: bold!important;
+}
+
+.italic {
+    font-style: italic!important;
+}
+
+.underline {
+    text-decoration: underline!important;
+}
+
+
+/* 颜色 */
+
+.white {
+    color: #ffffff!important;
+}
+
+.gray {
+    color: #acacac!important;
+}
+
+.red {
+    color: #fa535a!important;
+}
+
+.green {
+    color: #009934!important;
+}
+
+.orange {
+    color: #ff6c00!important;
+}
+
+.black {
+    color: #000!important;
+}
+
+.blue {
+    color: #248dac!important;
+}
+
+
+/* 对齐方式 */
+
+.txtc {
+    text-align: center!important;
+}
+
+.txtl {
+    text-align: left!important;
+}
+
+.txtr {
+    text-align: right!important;
+}
+
+.txtm {
+    vertical-align: middle!important;
+}
+
+
+/* 浮动 */
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+
+/* 清除布局浮动 */
+
+.clearfix:before,
+.clearfix:after {
+    content: "";
+    display: block;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+.clear {
+    clear: both;
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
+
+/* 其他 */
+
+.hidden {
+    display: none!important;
+}
+
+.block {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+}
+
+.nobg {
+    background: none!important;
+}
+
+.nopadding {
+    padding: 0!important;
+}
+
+.nomargin {
+    margin: 0!important;
+}
+
+.noborder {
+    border: none!important;
+}
+
+.nostyle * {
+    width: auto!important;
+    margin: 0!important;
+    padding: 0!important;
+    font-size: 0.12rem!important;
+    font-weight: normal!important;
+    text-align: left!important;
+    color: #666!important;
+    float: none!important;
+}
+
+.radius2 {
+    -moz-border-radius: 0.02rem;
+    -webkit-border-radius: 0.02rem;
+    border-radius: 0.02rem;
+}
+
+.loading {
+    min-width: 0.32rem;
+    min-height: 0.32rem;
+    background: url(images/loading.gif) center center no-repeat;
+}
+
+.notip span.error,
+.notip label.error {
+    display: none!important;
+}
+
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/*------------------------------ UI组件样式 ------------------------------*/
+
+
+/* 表单 */
+
+.form-title-fixed .form-group {
+    padding-left: 1.5rem;
+}
+
+.form-title-fixed .form-group .title {
+    width: 1.4rem;
+    float: left;
+    margin-left: -1.5rem;
+}
+
+
+/* artDialog */
+
+body .artui-dialog {
+    font-family: Arial, "Microsoft Yahei", "微软雅黑", "宋体";
+    font-size: 0.14rem;
+    color: #505050;
+    border-radius: 0;
+    border-color: #ddd;
+}
+
+body .artui-dialog-footer {
+    background-color: #eaeaea;
+    border-top: 1px solid #ddd;
+    padding: 0.2rem;
+}
+
+body .artui-dialog-footer button {
+    border-radius: 0;
+    padding: 0.09rem 0.35rem;
+    background: #f3f3f3;
+    border-color: #ddd;
+}
+
+body .artui-dialog-footer button:hover,
+body .artui-dialog-footer button:focus,
+body .artui-dialog-footer button:active {
+    background: #f9f9f9;
+}
+
+body .artui-dialog-footer button.artui-dialog-autofocus {
+    background-color: #49a7f0;
+    border-color: #49a7f0;
+}
+
+body .artui-dialog-footer button.artui-dialog-autofocus:hover,
+body .artui-dialog-footer button.artui-dialog-autofocus:focus,
+body .artui-dialog-footer button.artui-dialog-autofocus:active {
+    background-color: #3e98df;
+    border-color: #3e98df;
+}
+
+body .artui-dialog-footer button+button {
+    margin-left: 0.1rem;
+}
+
+
+/* selecrt2 */
+
+body .select2-container-multi .select2-choices,
+body .select2-container .select2-choice {
+    border-radius: 0;
+    line-height: 1.42857143;
+    color: #485d8b;
+    background-color: #fff;
+    background-image: none;
+}
+
+body .select2-container-multi .select2-choices .select2-search-field input {
+    border: none!important;
+    /*padding: 0.04rem 0.05rem;*/
+}
+
+body .select2-container-multi .select2-choices .select2-search-choice {
+    margin: 0.04rem 0 0.04rem 0.05rem
+}
+
+body .select2-container .select2-choice {
+    width: 100%;
+    height: 0.34rem;
+    line-height: 0.34rem;
+    border-color: #ddd;
+}
+
+body .select2-container .select2-choice .select2-arrow {
+    border-radius: 0;
+    border-color: #ddd;
+}
+
+body .select2-container.form-control {
+    padding: 0;
+    border: 0;
+}
+
+body .select2-container.form-control .select2-choice .select2-arrow b {
+    background-position: 0 0.04rem;
+}
+
+body .select2-drop-active {
+    border-color: #ddd;
+}
+
+body .select2-results .select2-highlighted {
+    background-color: #f6f9fd;
+    color: #2d9eff;
+}
+
+body .select2-search input {
+    padding: 0.02rem 0.2rem 0.02rem 0.05rem;
+}
+
+body .select2-drop {
+    color: #485d8b;
+}
+
+
+/*datetimepicker*/
+
+.datetimepicker {
+    background: #fff;
+}
+
+.datetimepicker td,
+.datetimepicker th {
+    color: #162a42;
+}
+
+[class*=" datetimepicker-dropdown"]:after {
+    border-bottom: 0.06rem solid #162A42!important;
+}
+
+.datetimepicker thead tr:first-child th:hover,
+.datetimepicker tfoot tr:first-child th:hover {
+    background: rgba(238, 238, 238, 0.3)!important;
+}
+
+.datetimepicker table tr td span:hover {
+    background: rgba(238, 238, 238, 0.3)!important;
+}
+
+
+/*daterangepicker*/
+
+.daterangepicker td.disabled {
+    background-color: #f1f1f1!important;
+    cursor: no-drop!important;
+}
+
+.daterangepicker .ranges .input-mini {
+    background: none!important;
+    color: #fff!important;
+}
+
+.daterangepicker,
+.daterangepicker .calendar-date {
+    background: #162a42!important;
+}
+
+.daterangepicker td.disabled {
+    background: none!important;
+    color: #949494!important;
+}
+
+.daterangepicker td.in-range {
+    background: rgba(235, 244, 248, 0.2)!important;
+}
+
+.daterangepicker .calendar-date {
+    border: 1px solid #456289!important;
+}
+
+.daterangepicker td,
+.daterangepicker th {
+    background: none!important;
+    color: #fff;
+}
+
+.daterangepicker td.available {
+    color: #fff!important;
+}
+
+.daterangepicker td.active,
+.daterangepicker td.active:hover {
+    background-color: #357ebd!important;
+    border-color: #3071a9!important;
+    color: #fff!important;
+}
+
+.daterangepicker.opensright:after,
+.daterangepicker.opensleft:after {
+    border-bottom: 0.06rem solid rgb(22, 42, 66)!important;
+}
+
+
+/*st-grid*/
+
+body .grid {
+    font-size: 0.14rem;
+    font-family: Arial, "Microsoft Yahei", "微软雅黑", "宋体";
+}
+
+body .grid th {
+    border: none;
+    background-color: #eaeaea;
+    padding: 0!important;
+}
+
+body .grid td {
+    padding: 0rem;
+    border: none;
+    position: relative;
+}
+
+body div.page-node {
+    font-size: 0.14rem;
+    text-align: right;
+    padding: 0.17rem 0;
+    height: 0.7rem!important
+}
+
+body div.page-node .gridTotal {
+    float: left;
+    color: #b4b4b4;
+}
+
+body div.page-node .gridTotal b {
+    color: #333;
+    padding: 0 0.03rem;
+    font-weight: normal;
+}
+
+body div.page-node input.page-bt,
+body .turn-page,
+body div.page-node input.some-page,
+body div.page-node .page-size {
+    height: 0.28rem;
+    border-radius: 0.1rem!important;
+    outline: medium;
+    line-height: 0.2rem;
+    border-radius: 0;
+    margin: 0 0.05rem;
+    padding: 0 0.12rem;
+    font-size: 0.14rem;
+}
+
+body div.page-node .page-size {
+    padding-right: 0;
+        width: 0.6rem;
+}
+
+body div.page-node input.page-bt {
+    line-height: 0.24rem;
+}
+
+body div.page-node input.page-bt:hover {
+    color: #fff;
+}
+
+body div.page-node .turn-page {
+    border: none;
+    height: 0.28rem;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0 0.1rem;
+    line-height: 0.24rem;
+}
+
+body .grid .sort-desc {
+    background-image: url(../images/down.png);
+}
+
+body .grid .sort-asc {
+    background-image: url(../images/up.png);
+}
+
+body .grid .sort-default {
+    background-image: url(../images/sort.png);
+}
+
+/* 通用样式 end */

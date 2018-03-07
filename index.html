@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset=utf-8>
+		<link rel=stylesheet href=static/css/reset.css>
+		<meta name=viewport content="width=device-width,initial-scale=1">
+		<title>my-project</title>
+		<link href=/zhuanli/static/css/app.ba807e2c8260932e26102f072259ae6a.css rel=stylesheet>
+		<style type="text/css">
+			.table-striped tr:nth-child(5) td:nth-child(3){
+				color: #74bc79!important;
+			}
+			.table-striped tr:nth-child(2) td:nth-child(2){
+				color: #ff9c00!important;
+			}
+			.table-striped tr:nth-child(9) td:nth-child(2){
+				color: #e03a56!important;
+			}
+			.table-striped tr:nth-child(15) td:nth-child(3){
+				color: #e03a56!important;
+			}
+			#WebGL-output h1{
+				position: absolute;
+				left: 50%; 
+				top: 50%;
+				color: #fff;
+				margin: -200px 0 0 -200px;
+			}
+			#legend{
+				position:absolute;
+				 left:30px; 
+				 top:-50px;
+			}
+			#legend li{
+				width: 100px;
+				height: 20px;
+				line-height: 20px;
+				display: inline-block;
+				font-size: 14px;
+			}
+			#legend li span{
+				width: 20px;
+				height: 20px;
+				display: inline-block;
+				border-radius: 50%;
+				margin-right: 10px;
+				vertical-align: top;
+			}
+			#legend li:nth-child(1) span{
+				background: #74bc79;
+			}
+			#legend li:nth-child(2) span{
+				background: #ff9c00;
+			}
+			#legend li:nth-child(3) span{
+				background: #e03a56;
+			}
+			
+			#legend li:nth-child(1){
+				color: #74bc79;
+			}
+			#legend li:nth-child(2){
+				color: #ff9c00;
+			}
+			#legend li:nth-child(3){
+				color: #e03a56;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id=app></div>
+		<script type=text/javascript src=/zhuanli/static/js/manifest.36e0c0d572ba4b979690.js></script>
+		<script type=text/javascript src=/zhuanli/static/js/vendor.437d278de99d51a52caf.js></script>
+		<script type=text/javascript src=/zhuanli/static/js/app.4bdda2dcb7d5c21d9e4d.js></script>
+		<script type="text/javascript" src="./libs/jquery-1.9.0.js"></script>
+		<script type="text/javascript" src="./libs/three.js"></script>
+		<script type="text/javascript" src="./libs/OBJLoader.js"></script>
+		<script type="text/javascript" src="./libs/MTLLoader.js"></script>
+		<script type="text/javascript" src="./libs/OBJMTLLoader.js"></script>
+		<script type="text/javascript" src="./libs/OrbitControls.js"></script>
+		<script type="text/javascript">
+			// once everything is loaded, we run our Three.js stuff.
+			$(document).ready(function() {
+				// 创建一个场景，它将包含我们所有的元素，比如对象、相机和灯光。
+				window.scene = new THREE.Scene();
+				var DOM = document.getElementById("WebGL-output");
+				window.color =['0x74bc79','0xff9c00','0xe03a56'];
+
+				// 创建一个相机，它定义了我们要看的地方。
+				var camera = new THREE.PerspectiveCamera(45, DOM.offsetWidth / DOM.offsetHeight, 0.1, 1000);
+
+				// 创建一个render并设置大小。
+				var webGLRenderer = new THREE.WebGLRenderer();
+				webGLRenderer.setClearColor(new THREE.Color(0x000000, 1.0));
+				webGLRenderer.setSize(DOM.offsetWidth, DOM.offsetHeight);
+				webGLRenderer.shadowMapEnabled = true;
+				// 将渲染器的输出添加到html元素。
+				DOM.appendChild(webGLRenderer.domElement);
+
+				// 把摄像机定位到场景的中心。
+				camera.position.x = -30;
+				camera.position.y = 40;
+				camera.position.z = 20;
+				camera.lookAt(new THREE.Vector3(0, 10, 0));
+
+				// 为阴影添加聚光灯
+				var spotLight = new THREE.SpotLight(0xffffff);
+				spotLight.position.x = 40;
+				spotLight.position.y = 150;
+				spotLight.position.z = 200;
+				spotLight.intensity = 0.8;
+				scene.add(spotLight);
+
+				var spotLight1 = new THREE.SpotLight(0xffffff);
+				spotLight1.position.x = 40;
+				spotLight1.position.y = -100;
+				spotLight1.position.z = -200;
+				spotLight1.intensity = 0.5;
+				scene.add(spotLight1);
+
+				var spotLight2 = new THREE.SpotLight(0xffffff);
+				spotLight2.position.y = 100;
+				spotLight2.intensity = 0.3;
+				scene.add(spotLight2);
+
+				// 鼠标可以拖拽视角
+				var orbitControls = new THREE.OrbitControls(camera);
+				orbitControls.autoRotate = false;
+
+				window.mesh = null;
+				window.defaultColor = null;
+				var filePath = './models/zhuanxiangjia';
+				var loader = new THREE.OBJMTLLoader();
+				
+				$('#WebGL-output').append('<h1>正在加载模型……</h1>').parent('#WebGL-output').css('position','relative')
+				
+				loader.load(filePath + '/zhuanxiangjia.obj', filePath + '/zhuanxiangjia.mtl', function(object) {
+					/*object.children.forEach(function(item, index) {
+						item.material.color.setHex('0x50575F');
+						if(index == 3) {
+							$('body').append('<button style="position:absolute; left:0px; top:150px;" data-index="' + index + '">部件:' + '刹车盘001' + '</button>')
+						} else if(index == 5) {
+							$('body').append('<button style="position:absolute; left:0px; top:200px;" data-index="' + index + '">部件:' + '刹车盘002' + '</button>')
+						} else if(index == 7) {
+							$('body').append('<button style="position:absolute; left:0px; top:250px;" data-index="' + index + '">部件:' + '刹车泵001' + '</button>')
+						} else if(index == 9) {
+							$('body').append('<button style="position:absolute; left:0px; top:300px;" data-index="' + index + '">部件:' + '车轮001' + '</button>')
+						} else if(index == 11) {
+							$('body').append('<button style="position:absolute; left:0px; top:350px;" data-index="' + index + '">部件:' + '刹车钳001' + '</button>')
+						} else if(index == 13) {
+							$('body').append('<button style="position:absolute; left:0px; top:400px;" data-index="' + index + '">部件:' + '车轮002' + '</button>')
+						} else if(index == 17) {
+							$('body').append('<button style="position:absolute; left:0px; top:450px;" data-index="' + index + '">部件:' + '主体001' + '</button>')
+						} else if(index == 18) {
+							$('body').append('<button style="position:absolute; left:0px; top:500px;" data-index="' + index + '">部件:' + '刹车钳002' + '</button>')
+						}
+					});*/
+					mesh = object;
+					scene.add(mesh);
+					object.scale.set(0.012, 0.012, 0.012);
+					mesh.children[3].material.color.setHex(color[2]);
+					//操作DOM
+					$('.failureAnalysis-graph').append('<ul id="legend"><li><span></span>正常</li><li><span></span>预警</li><li><span></span>故障</li></ul>');
+					$('#WebGL-output h1').remove();
+				});
+
+				//坐标轴辅助  
+				/*var axes = new THREE.AxisHelper(1000);
+				scene.add(axes);*/
+				
+				function render() {
+					orbitControls.update();
+					if(mesh) {
+						mesh.rotation.y += 0.006;
+					}
+					// 定时渲染
+					requestAnimationFrame(render);
+					webGLRenderer.render(scene, camera);
+				}
+				setTimeout(render);
+				
+				setInterval(function(){
+					var num = [3,5,7,9,11,13,17,18];
+					var index = num[Math.floor(Math.random()*num.length)];
+					if(mesh){
+						mesh.children.forEach(function(item, _index) {
+							item.material.color.setHex('0x50575F');
+						});
+						if(index == 3) {
+								mesh.children[index].material.color.setHex(color[0]);
+							} else if(index == 5) {
+								mesh.children[index].material.color.setHex(color[1]);
+							} else if(index == 7) {
+								mesh.children[index].material.color.setHex(color[2]);
+							} else if(index == 9) {
+								mesh.children[index].material.color.setHex(color[0]);
+							} else if(index == 11) {
+								mesh.children[index].material.color.setHex(color[1]);
+							} else if(index == 13) {
+								mesh.children[index].material.color.setHex(color[2]);
+							} else if(index == 17) {
+								mesh.children[index].material.color.setHex(color[0]);
+							} else if(index == 18) {
+								mesh.children[index].material.color.setHex(color[1]);
+							}
+					}
+				},5000);
+			});
+		</script>
+	</body>
+
+</html>
